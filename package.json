@@ -1,0 +1,21 @@
+{
+  "name": "ten_pin_bowling",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+	"start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/samuishark/ten_pin_bowling.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/samuishark/ten_pin_bowling/issues"
+  },
+  "homepage": "https://github.com/samuishark/ten_pin_bowling#readme"
+}
