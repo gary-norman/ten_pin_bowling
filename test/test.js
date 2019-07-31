@@ -1,7 +1,15 @@
 'use strict'
 
 let bowling = require('../src/bowlingrules/bowling.js')
-
+/*let bowling = {
+    throw1: 0,
+    throw2: 0,
+    calculateScore: function (){
+        return this.throw1 + this.throw2;
+    }
+    
+    
+    }*/
 let assert = require('assert');
 
 /**
@@ -13,6 +21,7 @@ let assert = require('assert');
  *
  * run test with 'npm test'
  */
+
 
 describe('Bowling game tests', function () {
     it('Test for zero value', function() {
