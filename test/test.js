@@ -27,4 +27,14 @@ describe('Bowling game tests', function () {
     it('Test for zero value', function() {
         assert(bowling.calculateScore() ==  0)
     })
+    it('Has 21 throws', function() {
+        assert.strictEqual(bowling.throws.length, 21);
+    })
+    it('has 10 frames', function() {
+        assert.strictEqual(bowling.frames.length, 10);
+    })
+    it('test for zero total', function() {
+        assert.strictEqual(bowling.calculateTotal, 0)
+        
+    })
 })
