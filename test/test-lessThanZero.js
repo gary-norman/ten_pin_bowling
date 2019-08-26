@@ -23,18 +23,8 @@ let assert = require('assert');
  */
 
 
-describe('Bowling game tests', function () {
-    it('Test for less than 10', function() {
-        assert(bowling.calculateScore() , 10)
-    })
-    it('Has 21 throws', function() {
-        assert.strictEqual(bowling.throws.length, 21);
-    })
-    it('has 10 frames', function() {
-        assert.strictEqual(bowling.frames.length, 10);
-    })
-    it('test for zero total', function() {
-        assert.strictEqual(bowling.calculateTotal, 0)
-    
+describe('Bowling game test 2', function () {
+    it('Test for < 10', function() {
+        assert(bowling.calculateScore() < 10);
     })
 })
