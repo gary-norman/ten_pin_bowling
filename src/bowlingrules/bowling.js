@@ -4,8 +4,8 @@ let throws = Array(21).fill(0);
 let frames = Array(10).fill(0);
 
 function calculateScore(){
-    var throw1 = 9;
-    var throw2 = 0;
+    var throw1 = 5;
+    var throw2 = 4;
     return throw1 + throw2;
 }
 
