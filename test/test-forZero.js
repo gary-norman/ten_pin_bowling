@@ -24,12 +24,14 @@ let assert = require('assert');
 
 let throws = Array(21).fill(0);
 
-describe('Bowling game test 1', function () {
+describe('Check zero score is zero.', function () {
     it('Test for zero value', function() {
         assert(bowling.calculateScore(throws) ==  0);
     })
 
-    it('Test for < 10', function() {
+    it('Check 2 throws equal 9', function() {
+        throws[0] = 5
+        throws[1] = 4
         assert(bowling.calculateScore(throws) == 9);
     })
 })
