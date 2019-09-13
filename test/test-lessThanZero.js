@@ -1,6 +1,6 @@
-'use strict'
+// 'use strict'
 
-let bowling = require('../src/bowlingrules/bowling.js')
+// let bowling = require('../src/bowlingrules/bowling.js')
 /*let bowling = {
     throw1: 0,
     throw2: 0,
@@ -10,7 +10,7 @@ let bowling = require('../src/bowlingrules/bowling.js')
     
     
     }*/
-let assert = require('assert');
+// let assert = require('assert');
 
 /**
  * So Test Driven Development is the concept of writing a test first
@@ -23,8 +23,4 @@ let assert = require('assert');
  */
 
 
-describe('Bowling game test 2', function () {
-    it('Test for < 10', function() {
-        assert(bowling.calculateScore() < 10);
-    })
-})
+

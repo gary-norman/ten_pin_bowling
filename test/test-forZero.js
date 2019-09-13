@@ -22,19 +22,14 @@ let assert = require('assert');
  * run test with 'npm test'
  */
 
+let throws = Array(21).fill(0);
 
 describe('Bowling game test 1', function () {
-    it.skip('Test for zero value', function() {
-        assert(bowling.calculateScore() ==  0);
+    it('Test for zero value', function() {
+        assert(bowling.calculateScore(throws) ==  0);
     })
-    /*it('Has 21 throws', function() {
-        assert.strictEqual(bowling.throws.length, 21);
+
+    it('Test for < 10', function() {
+        assert(bowling.calculateScore(throws) == 9);
     })
-    it('has 10 frames', function() {
-        assert.strictEqual(bowling.frames.length, 10);
-    })
-    it('test for zero total', function() {
-        assert.strictEqual(bowling.calculateTotal, 0)
-        
-    })*/
 })
