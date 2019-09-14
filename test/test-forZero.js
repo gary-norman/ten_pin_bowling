@@ -34,4 +34,13 @@ describe('Check zero score is zero.', function () {
         throws[1] = 4
         assert(bowling.calculateScore(throws) == 9);
     })
+
+    it('Check 2 frame spare', function() {
+        throws[0] = 5
+        throws[1] = 5
+        throws[1] = 4
+        throws[1] = 5
+
+        assert(bowling.calculateScore(throws) == 23);
+    })
 })
