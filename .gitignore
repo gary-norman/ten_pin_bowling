@@ -43,3 +43,6 @@ node_modules
 /.idea/ten_pin_bowling.iml
 /.idea/modules.xml
 /.idea/misc.xml
+
+#vis studio code
+*.code-workspace
