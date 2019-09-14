@@ -38,8 +38,8 @@ describe('Check zero score is zero.', function () {
     it('Check 2 frame spare', function() {
         throws[0] = 5
         throws[1] = 5
-        throws[1] = 4
-        throws[1] = 5
+        throws[2] = 4
+        throws[3] = 5
 
         assert(bowling.calculateScore(throws) == 23);
     })
