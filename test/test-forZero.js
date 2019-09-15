@@ -63,4 +63,40 @@ describe('Check zero score is zero.', function () {
 
         assert(bowling.calculateScore(throws) == 48);
     })
+
+    it('check perfect game', function()   {
+        throws[0] = 10
+        throws[1] = 0
+
+        throws[2] = 10
+        throws[3] = 0
+
+        throws[4] = 10
+        throws[5] = 0
+
+        throws[6] = 10
+        throws[7] = 0
+
+        throws[8] = 10
+        throws[9] = 0
+
+        throws[10] = 10
+        throws[11] = 0
+
+        throws[12] = 10
+        throws[13] = 0
+
+        throws[14] = 10
+        throws[15] = 0
+
+        throws[16] = 10
+        throws[17] = 0
+
+        throws[18] = 10
+        throws[19] = 10
+
+        throws[20] = 10
+
+        assert(bowling.calculateScore(throws) == 300, "The actual value is "+bowling.calculateScore(throws));
+    })
 })
