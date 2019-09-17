@@ -26,13 +26,13 @@ let throws = Array(21).fill(0);
 
 describe('Check zero score is zero.', function () {
     it('Test for zero value', function() {
-        assert(bowling.calculateScore(throws) ==  0);
+        assert(bowling.calculateScore(throws) ==  0, "The actual value is "+bowling.calculateScore(throws));
     })
 
     it('Check 2 throws equal 9', function() {
         throws[0] = 5
         throws[1] = 4
-        assert(bowling.calculateScore(throws) == 9);
+        assert(bowling.calculateScore(throws) == 9, "The actual value is "+bowling.calculateScore(throws));
     })
 
     it('Check 2 frame spare', function() {
@@ -41,7 +41,7 @@ describe('Check zero score is zero.', function () {
         throws[2] = 4
         throws[3] = 5
 
-        assert(bowling.calculateScore(throws) == 23);
+        assert(bowling.calculateScore(throws) == 23, "The actual value is "+bowling.calculateScore(throws));
     })
 
     it('check 2 frame strike', function()   {
@@ -50,7 +50,7 @@ describe('Check zero score is zero.', function () {
         throws[2] = 4
         throws[3] = 5
 
-        assert(bowling.calculateScore(throws) == 28);
+        assert(bowling.calculateScore(throws) == 28, "The actual value is "+bowling.calculateScore(throws));
     })
 
     it('check 3 frame strike + spare', function()   {
@@ -61,7 +61,7 @@ describe('Check zero score is zero.', function () {
         throws[4] = 4
         throws[5] = 5
 
-        assert(bowling.calculateScore(throws) == 48);
+        assert(bowling.calculateScore(throws) == 48, "The actual value is "+bowling.calculateScore(throws));
     })
 
     it('check perfect game', function()   {
