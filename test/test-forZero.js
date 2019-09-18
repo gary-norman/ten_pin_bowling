@@ -23,6 +23,7 @@ let assert = require('assert');
  */
 
 let throws = Array(21).fill(0);
+let frames = Array(10).fill(0);
 
 describe('Check zero score is zero.', function () {
     it('Test for zero value', function() {
