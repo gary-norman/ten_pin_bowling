@@ -25,15 +25,15 @@ let assert = require('assert');
 let throws = Array(21).fill(0);
 let frames = Array(10).fill(0);
 
-describe('Check total throws score.', function () {
+describe('Check total frames score.', function () {
     it('Test for zero value', function() {
-        assert(bowling.calculateScore(throws) ==  0, "The actual value is " + bowling.calculateScore(throws) + " array = "+throws);
+        assert(bowling.calculateTotal(frames) ==  0, "The actual value is " + bowling.calculateTotal(frames) + " array = "+frames);
     })
 
     it('Check 2 throws equal 9', function() {
         throws[0] = 5
         throws[1] = 4
-        assert(bowling.calculateScore(throws) == 9, "The actual value is " + bowling.calculateScore(throws) + " array = "+throws);
+        assert(bowling.calculateTotal(frames) == 9, "The actual value is " + bowling.calculateTotal(frames) + " array = "+frames);
     })
 
     it('Check 2 frame spare', function() {
@@ -42,7 +42,7 @@ describe('Check total throws score.', function () {
         throws[2] = 4
         throws[3] = 5
 
-        assert(bowling.calculateScore(throws) == 23, "The actual value is " + bowling.calculateScore(throws) + " array = "+throws);
+        assert(bowling.calculateTotal(frames) == 23, "The actual value is " + bowling.calculateTotal(frames) + " array = "+frames);
     })
 
     it('check 2 frame strike', function()   {
@@ -51,7 +51,7 @@ describe('Check total throws score.', function () {
         throws[2] = 4
         throws[3] = 5
 
-        assert(bowling.calculateScore(throws) == 28, "The actual value is " + bowling.calculateScore(throws) + " array = "+throws);
+        assert(bowling.calculateTotal(frames) == 28, "The actual value is " + bowling.calculateTotal(frames) + " array = "+frames);
     })
 
     it('check 3 frame strike + spare', function()   {
@@ -62,7 +62,7 @@ describe('Check total throws score.', function () {
         throws[4] = 4
         throws[5] = 5
 
-        assert(bowling.calculateScore(throws) == 43, "The actual value is " + bowling.calculateScore(throws) + " array = "+throws);
+        assert(bowling.calculateTotal(frames) == 43, "The actual value is " + bowling.calculateTotal(frames) + " array = "+frames);
     })
 
     it('check perfect game', function()   {
@@ -98,7 +98,7 @@ describe('Check total throws score.', function () {
 
         throws[20] = 10
 
-        assert(bowling.calculateScore(throws) == 300, "The actual value is " + bowling.calculateScore(throws) + " array = "+throws);
+        assert(bowling.calculateTotal(frames) == 300, "The actual value is " + bowling.calculateTotal(frames) + " array = "+frames);
     })
 
     it('check 9 strikes and a spare', function()   {
@@ -134,7 +134,7 @@ describe('Check total throws score.', function () {
 
         throws[20] = 5
 
-        assert(bowling.calculateScore(throws) == 270, "The actual value is " + bowling.calculateScore(throws) + " array = "+throws);
+        assert(bowling.calculateTotal(frames) == 270, "The actual value is " + bowling.calculateTotal(frames) + " array = "+frames);
     })
 
     it('check 10 spares', function()   {
@@ -170,7 +170,7 @@ describe('Check total throws score.', function () {
 
         throws[20] = 5
 
-        assert(bowling.calculateScore(throws) == 150, "The actual value is " + bowling.calculateScore(throws) + " array = "+throws);
+        assert(bowling.calculateTotal(frames) == 150, "The actual value is " + bowling.calculateTotal(frames) + " array = "+frames);
     })
 
     it('check every frame is 9', function()   {
@@ -206,6 +206,6 @@ describe('Check total throws score.', function () {
 
         throws[20] = 0
 
-        assert(bowling.calculateScore(throws) == 90, "The actual value is " + bowling.calculateScore(throws) + " array = "+throws);
+        assert(bowling.calculateTotal(frames) == 90, "The actual value is " + bowling.calculateTotal(frames) + " array = "+frames);
     })
 })

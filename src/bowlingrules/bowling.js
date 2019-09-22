@@ -112,7 +112,6 @@ function calculateScore(throws){
 
 
 
-
 function isFinalFrameStrike(x,y)  {
     return x === 18 && y === 10;
 }
@@ -125,54 +124,61 @@ function isStrike(x)    {
 function isSpare(x,y)   {
     return x < 10 && y < 10 && x + y === 10;
 }
-function finalFrameStrike(x, y, z) {
-    return x += y += z, y = 0;
+function finalFrameStrike() {
+    return frames[10] = throws[19] + throws[20] + throws[21];
 }
-function double(x, y, z)   {
-    return x += y + z;
+function double(x)   {
+    return frames[x] = throws[x] + throws[x+2] + throws[x+4];
 }
-function strike(x, y, z)   {
-    return x += y + z;
+function strike(x)   {
+    return frames[x] = throws[x] + throws[x+2] + throws[x+3];
 }
-function spare(x, y, z)    {
-    let xyz = x + y + z, y2 = 0;
-    return xyz,y2;
-}
+function spare(x)    {
+    return frames[x] = throws[x] + throws[x+1] + throws[x+2];
+} 
+function normal(x)    {
+    return frames[x] = throws[x] + throws[x+1];
+}   
 
 function calculateScore(throws){
-
-    
-
     var total = 0, j = throws.length;
     
     for (var i=0; i<(j-1); i++) {
         switch(true)  {
             case isFinalFrameStrike(i, throws[i]):
-                    finalFrameStrike(throws[i], throws[i+1], throws[i+2]);
+                    finalFrameStrike();
                     break;
             case isDouble(throws[i],throws[i+2]):
-                    double(throws[i], throws[i+2], throws[i+4]);
+                    double(i/2);
                     break;
             case isStrike(throws[i]):
-                    strike(throws[i], throws[i+2], throws[i+3]);
+                    strike(i/2);
                     break;
             case isSpare(throws[i], throws[i+1]):
-                    spare(throws[i], throws[i+1], throws[i+2]), throws[i] = spare.xyz, throws[i+1] = spare.y2;
+                    spare(i/2);
                     break;
             default:
-                    throws[i+1] == throws[i+1];
+                    normal(i/2);
         }
-
-        total += throws[i];
+        total += frames[l];
     }
     return total;
-    
 }
+
+/*function calculateTotal(frames){
+    var total = 0, k = frames.length;
+    for (var l=0; l<(k-3); l+=2)    {
+
+    total += frames[l];
+    }
+    return total;
+}*/
 
 
 
 module.exports.calculateScore = calculateScore;
-module.exports.finalFrameStrike = finalFrameStrike;
+//module.exports.calculateTotal = calculateTotal;
+/*module.exports.finalFrameStrike = finalFrameStrike;
 module.exports.double = double;
 module.exports.strike = strike;
 module.exports.spare = spare;
@@ -180,4 +186,4 @@ module.exports.isFinalFrameStrike = isFinalFrameStrike;
 module.exports.isDouble = isDouble;
 module.exports.isStrike = isStrike;
 module.exports.isSpare = isSpare;
-
+*/
