@@ -110,7 +110,10 @@ function calculateScore(throws){
 
 */
 
-let frames = Array(10).fill(0);
+function Frame(throw1, throw2)  {
+    this.throwOne = throw1;
+    this.throwTwo = throw2;
+}
 
 function isFinalFrameStrike(x,y)  {
     return x === 18 && y === 10;
@@ -140,7 +143,7 @@ function spare(x)    {
      return frames;
 } 
 function normal(x,y,z)    {
-     return x = 1 + 1;
+     frames[x] = y + z;
 }   
 
 function calculateScore(throws){
@@ -161,9 +164,9 @@ function calculateScore(throws){
                     spare(i/2);
                     break;
             default:
-                    frames[0] = 1+2;
-                    //normal(frames[i/2],throws[i],throws[i+1]);
+                    normal(i/2,throws[i],throws[i+1]);
         }
+        calculateTotal();
     }
     
 }
@@ -171,10 +174,9 @@ function calculateScore(throws){
 function calculateTotal(frames){
     var total = 0, k = frames.length;
     for (var l=0; l<(k-3); l+=2)    {
-
-    total += frames[l];
-    }
-    return total;
+        total += frames[l];
+}
+return total;
 }
 
 

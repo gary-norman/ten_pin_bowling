@@ -25,6 +25,8 @@ let assert = require('assert');
 let throws = Array(21).fill(0);
 let frames = Array(10).fill(0);
 
+
+
 describe('Check total frames score.', function () {
     it('Test for zero value', function() {
         assert(bowling.calculateTotal(frames) ==  0, "The actual value is " + bowling.calculateTotal(frames) + " array = "+frames);
