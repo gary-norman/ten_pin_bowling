@@ -22,7 +22,7 @@ let assert = require('assert');
  * run test with 'npm test'
  */
 
-let throws = Array(21).fill(0);
+
 let frames = Array(10).fill(0);
 
 
@@ -33,8 +33,6 @@ describe('Check total frames score.', function () {
     })
 
     it('Check 2 throws equal 9', function() {
-        throws[0] = 5
-        throws[1] = 4
         assert(bowling.calculateTotal(frames) == 9, "The actual value is " + bowling.calculateTotal(frames) + " array = "+frames);
     })
     

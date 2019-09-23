@@ -127,23 +127,20 @@ function isStrike(x)    {
 function isSpare(x,y)   {
     return x < 10 && y < 10 && x + y === 10;
 }
-function finalFrameStrike() {
-     frames[10] = throws[19] + throws[20] + throws[21];
+function finalFrameStrike(x,y,z) {
+     return x + y + z;
 }
-function double(x)   {
-     frames[x] = throws[x] + throws[x+2] + throws[x+4];
-     return frames;
+function double(x,y,z)   {
+     return x + y + z;
 }
-function strike(x)   {
-     frames[x] = throws[x] + throws[x+2] + throws[x+3];
-     return frames;
+function strike(x,y,z)   {
+     return x + y + z;
 }
-function spare(x)    {
-     frames[x] = throws[x] + throws[x+1] + throws[x+2];
-     return frames;
+function spare(x,y,z)    {
+     return x + y + z;
 } 
-function normal(x,y,z)    {
-     frames[x] = y + z;
+function normal(x,y)    {
+     return x + y;
 }   
 
 function calculateScore(throws){
@@ -152,21 +149,20 @@ function calculateScore(throws){
     for (var i=0; i<(j-1); i++) {
         switch(true)  {
             case isFinalFrameStrike(i, throws[i]):
-                    finalFrameStrike();
+                    finalFrameStrike(throws[i], throws[i+1], throws[i+2]);
                     break;
             case isDouble(throws[i],throws[i+2]):
-                    double(i/2);
+                    double(throws[i], throws[i+2], throws[i+4]);
                     break;
             case isStrike(throws[i]):
-                    strike(i/2);
+                    strike(throws[i], throws[i+2], throws[i+3]);
                     break;
             case isSpare(throws[i], throws[i+1]):
-                    spare(i/2);
+                    spare(throws[i], throws[i+1], throws[i+2]);
                     break;
             default:
-                    normal(i/2,throws[i],throws[i+1]);
+                    normal(throws[i],throws[i+1]);
         }
-        calculateTotal();
     }
     
 }
