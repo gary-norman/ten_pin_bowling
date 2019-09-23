@@ -110,7 +110,7 @@ function calculateScore(throws){
 
 */
 
-
+let frames = Array(10).fill(0);
 
 function isFinalFrameStrike(x,y)  {
     return x === 18 && y === 10;
@@ -125,19 +125,22 @@ function isSpare(x,y)   {
     return x < 10 && y < 10 && x + y === 10;
 }
 function finalFrameStrike() {
-    return frames[10] = throws[19] + throws[20] + throws[21];
+     frames[10] = throws[19] + throws[20] + throws[21];
 }
 function double(x)   {
-    return frames[x] = throws[x] + throws[x+2] + throws[x+4];
+     frames[x] = throws[x] + throws[x+2] + throws[x+4];
+     return frames;
 }
 function strike(x)   {
-    return frames[x] = throws[x] + throws[x+2] + throws[x+3];
+     frames[x] = throws[x] + throws[x+2] + throws[x+3];
+     return frames;
 }
 function spare(x)    {
-    return frames[x] = throws[x] + throws[x+1] + throws[x+2];
+     frames[x] = throws[x] + throws[x+1] + throws[x+2];
+     return frames;
 } 
-function normal(x)    {
-    return frames[x] = throws[x] + throws[x+1];
+function normal(x,y,z)    {
+     return x = 1 + 1;
 }   
 
 function calculateScore(throws){
@@ -158,26 +161,26 @@ function calculateScore(throws){
                     spare(i/2);
                     break;
             default:
-                    normal(i/2);
+                    frames[0] = 1+2;
+                    //normal(frames[i/2],throws[i],throws[i+1]);
         }
-        total += frames[l];
     }
-    return total;
+    
 }
 
-/*function calculateTotal(frames){
+function calculateTotal(frames){
     var total = 0, k = frames.length;
     for (var l=0; l<(k-3); l+=2)    {
 
     total += frames[l];
     }
     return total;
-}*/
+}
 
 
 
 module.exports.calculateScore = calculateScore;
-//module.exports.calculateTotal = calculateTotal;
+module.exports.calculateTotal = calculateTotal;
 /*module.exports.finalFrameStrike = finalFrameStrike;
 module.exports.double = double;
 module.exports.strike = strike;
