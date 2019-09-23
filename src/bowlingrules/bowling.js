@@ -115,18 +115,7 @@ function Frame(throw1, throw2)  {
     this.throwTwo = throw2;
 }
 */
-function isFinalFrameStrike(x,y)  {
-    return x === 18 && y === 10;
-}
-function isDouble(x,y)    {
-    return x === 10 && y === 10;    
-}
-function isStrike(x)    {
-    return x === 10;
-}
-function isSpare(x,y)   {
-    return x < 10 && y < 10 && x + y === 10;
-}
+
 /*function finalFrameStrike(x,y,z) {
      return x + y + z;
 }
@@ -141,10 +130,8 @@ function spare(x,y,z)    {
 } 
 function normal(x,y)    {
      return x + y;
-}   
-function frameScore(x,y,z)  {
-    return x + y + z;
-}
+}   */
+
 
 /*
 function calculateScore(throws){
@@ -171,32 +158,46 @@ function calculateScore(throws){
     }
     return total;
     */
+    function isFinalFrameStrike(x,y)  {
+    return x === 18 && y === 10;
+    }
+    function isDouble(x,y)    {
+    return x === 10 && y === 10;    
+    }
+    function isStrike(x)    {
+    return x === 10;
+    }
+    function isSpare(x,y)   {
+    return x < 10 && y < 10 && x + y === 10;
+    }
 
-
+   /*
+   function frameScore(x,y,z)  {
+    frames[i] = x + y + z;
+    return frames[i], j++, j++;
+}
+*/
 function calculateTotal(frames, throws){
-    var j=0, total = 0;
+    let j=0, total = 0;
     for(var i=0;i<frames.length;i++) {
 
         switch(true)  {
             case isFinalFrameStrike(j, throws[j]):
-                    frames[i] += throws[j] + throws[j+1] + throws[j+2],
-                    j++, j++;
+                    frames[i] = throws[j] + throws[j+1] + throws[j+2], j++, j++;
+                    //frameScore(throws[j], throws[j+1], throws[j+2]);
                     break;
             case isDouble(throws[j],throws[j+2]):
-                    frames[i] += throws[j] + throws[j+2] + throws[j+4],
-                    j++, j++;
+                    frames[i] = throws[j] + throws[j+2] + throws[j+4], j++, j++;
+                    //frameScore(throws[j], throws[j+2], throws[j+4]);
                     break;
             case isStrike(throws[j]):
-                    fframes[i] += throws[j] + throws[j+2] + throws[j+3],
-                    j++, j++;
+                    frames[i] = throws[j] + throws[j+2] + throws[j+3], j++, j++;
                     break;
             case isSpare(throws[j], throws[j+1]):
-                    frames[i] += throws[j] + throws[j+1] + throws[j+2],
-                    j++, j++;
+                    frames[i] = throws[j] + throws[j+1] + throws[j+2], j++, j++;
                     break;
             default:
-                frames[i] += throws[j]; j++;
-                frames[i] += throws[j]; j++;
+                frames[i] = throws[j], j++, frames[i] += throws[j], j++;
         }
 
         
