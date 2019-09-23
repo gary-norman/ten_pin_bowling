@@ -24,16 +24,27 @@ let assert = require('assert');
 
 
 let frames = Array(10).fill(0);
-
+let throws = Array(21).fill(0);
 
 
 describe('Check total frames score.', function () {
     it('Test for zero value', function() {
-        assert(bowling.calculateFrames(x) ==  0, "The actual value is " + bowling.calculateFrames(x) + " array = "+frames);
+        assert(bowling.calculateTotal(frames, throws) ==  0, "The actual value is " + bowling.calculateTotal(frames, throws) + " array = "+frames);
     })
 
     it('Check 2 throws equal 9', function() {
-        assert(bowling.calculateFrames(x) == 9, "The actual value is " + bowling.calculateFrames(x) + " array = "+frames);
+        throws[0] = 5
+        throws[1] = 4
+        assert(bowling.calculateTotal(frames, throws) == 9, "The actual value is " + bowling.calculateTotal(frames, throws) + " array = "+frames);
+    })
+
+    it('Check 2 frame spare', function() {
+        throws[0] = 5
+        throws[1] = 5
+        throws[2] = 4
+        throws[3] = 5
+
+        assert(bowling.calculateTotal(frames, throws) == 23, "The actual value is " + bowling.calculateTotal(frames, throws) + " array = "+throws);
     })
     
 })
