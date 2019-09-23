@@ -29,11 +29,11 @@ let frames = Array(10).fill(0);
 
 describe('Check total frames score.', function () {
     it('Test for zero value', function() {
-        assert(bowling.calculateTotal(frames) ==  0, "The actual value is " + bowling.calculateTotal(frames) + " array = "+frames);
+        assert(bowling.calculateFrames(x) ==  0, "The actual value is " + bowling.calculateFrames(x) + " array = "+frames);
     })
 
     it('Check 2 throws equal 9', function() {
-        assert(bowling.calculateTotal(frames) == 9, "The actual value is " + bowling.calculateTotal(frames) + " array = "+frames);
+        assert(bowling.calculateFrames(x) == 9, "The actual value is " + bowling.calculateFrames(x) + " array = "+frames);
     })
     
 })

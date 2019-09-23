@@ -127,7 +127,7 @@ function isStrike(x)    {
 function isSpare(x,y)   {
     return x < 10 && y < 10 && x + y === 10;
 }
-function finalFrameStrike(x,y,z) {
+/*function finalFrameStrike(x,y,z) {
      return x + y + z;
 }
 function double(x,y,z)   {
@@ -141,39 +141,48 @@ function spare(x,y,z)    {
 } 
 function normal(x,y)    {
      return x + y;
-}   
+}   */
+function frameScore(x,y,z)  {
+    return x + y + z;
+}
 
+/*
 function calculateScore(throws){
     var total = 0, j = throws.length;
     
     for (var i=0; i<(j-1); i++) {
         switch(true)  {
             case isFinalFrameStrike(i, throws[i]):
-                    finalFrameStrike(throws[i], throws[i+1], throws[i+2]);
+                    frameScore(throws[i], throws[i+1], throws[i+2]);
                     break;
             case isDouble(throws[i],throws[i+2]):
-                    double(throws[i], throws[i+2], throws[i+4]);
+                    frameScore(throws[i], throws[i+2], throws[i+4]);
                     break;
             case isStrike(throws[i]):
-                    strike(throws[i], throws[i+2], throws[i+3]);
+                    frameScore(throws[i], throws[i+2], throws[i+3]);
                     break;
             case isSpare(throws[i], throws[i+1]):
-                    spare(throws[i], throws[i+1], throws[i+2]);
+                    frameScore(throws[i], throws[i+1], throws[i+2]);
                     break;
             default:
-                    normal(throws[i],throws[i+1]);
+                    frameScore(null,throws[i],throws[i+1]);
         }
+        total += throws[i];
     }
-    
-}
+    return total;
+    */
+
 
 function calculateTotal(frames){
-    var total = 0, k = frames.length;
-    for (var l=0; l<(k-3); l+=2)    {
-        total += frames[l];
-}
-return total;
-}
+    for(var i=0;i<frames.length;i++) {
+        frames[i] += throws[j]; j++;
+        frames[i] += throws[j]; j++
+    }
+
+
+    }
+    
+
 
 
 
