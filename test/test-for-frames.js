@@ -101,7 +101,7 @@ describe('Check total frames score.', function () {
 
         throws[20] = 10
 
-        assert(bowling.calculateTotal(frames, throws) == 300, "The actual value is " + bowling.calculateTotal(frames, throws) + " array = "+throws);
+        assert(bowling.calculateTotal(frames, throws) == 300, "The actual value is " + bowling.calculateTotal(frames, throws) + " array = "+frames[0].total+"-"+frames[1].total+"-"+frames[2].total+"-"+frames[3].total+"-"+frames[4].total+"-"+frames[5].total+"-"+frames[6].total+"-"+frames[7].total+"-"+frames[8].total+"-"+frames[9].total);
     })
 
     it('check 9 strikes and a spare', function()   {

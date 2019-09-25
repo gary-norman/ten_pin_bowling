@@ -145,15 +145,12 @@ function calculateScore(throws){
 }*/
 
     class Frame {
-        constructor(score1, score2, score3, total) {
+        constructor(score1, score2, score3) {
         this.scoreOne = score1;
         this.scoreTwo = score2;
         this.scoreThree = score3;
         this.total = this.scoreOne + this.scoreTwo + this.scoreThree;
     }}
-
-
-
     function isFinalFrameStrike(x,y)  {
     return x === 18 && y === 10;
     }
@@ -166,23 +163,20 @@ function calculateScore(throws){
     function isSpare(x,y)   {
     return x < 10 && y < 10 && x + y === 10;
     }
-    function frameScore(x,y,z)  {
-    return x + y + z;
-    }
 function calculateTotal(frames, throws){
     let j=0, total = 0;
     for(var i=0;i<frames.length;i++) {
 
         switch(true)  {
             case isFinalFrameStrike(j, throws[j]):
-                    //frames[i] = frameScore(throws[j], throws[j+1], throws[j+2]), j++, j++;
                     frames[i] = new Frame(throws[j], throws[j+1], throws[j+2]), j++, j++;
                     break;
-            case isDouble(throws[j],throws[j+2]):
-                    frames[i] = new Frame(throws[j], throws[j+2], throws[j+4]), j++, j++;
+            case isDouble(throws[j],throws[j-2]):
+                    frames[i] = new Frame(throws[j], throws[j+2], null),
+                    frames[i-1].score3 = throws[j+2], j++, j++;
                     break;
             case isStrike(throws[j]):
-                    frames[i] = new Frame(throws[j], throws[j+2], throws[j+3]), j++, j++;
+                    frames[i] = new Frame(throws[j], throws[j+2], null), j++, j++;
                     break;
             case isSpare(throws[j], throws[j+1]):
                     frames[i] = new Frame(throws[j], throws[j+1], throws[j+2]), j++, j++;
@@ -190,7 +184,10 @@ function calculateTotal(frames, throws){
             default:
                 frames[i] = new Frame(throws[j], throws[j+1], null), j++, j++;
         }
-        total += frames[i].total;
+        //total += frames[i].total;
+    }
+    for(var k=0;k<frames.length;k++) {
+        total += frames[k].total;
     }
     return total;
     }
