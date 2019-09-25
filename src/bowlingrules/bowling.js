@@ -154,33 +154,59 @@ function calculateScore(throws){
     function isFinalFrameStrike(x,y)  {
     return x === 18 && y === 10;
     }
+    function isFinalFrameDouble(x,y,z)  {
+        return x === 18 && y === 10 && z === 10;
+        }
     function isDouble(x,y)    {
     return x === 10 && y === 10;    
     }
     function isStrike(x)    {
     return x === 10;
     }
+    function isPostStrikeSpare(x,y,z)   {
+    return x < 10 && y < 10 && x + y === 10 && z === 10;
+    }
+    function isPostStrikeNormal(x,y,z)   {
+        return x < 10 && y < 10 && z === 10;
+        }
     function isSpare(x,y)   {
     return x < 10 && y < 10 && x + y === 10;
     }
-function calculateTotal(frames, throws){
+function calculateTotal(frames, framesObjects, throws){
     let j=0, total = 0;
     for(var i=0;i<frames.length;i++) {
 
         switch(true)  {
+            case isFinalFrameDouble(j, throws[j], throws[j-2]):
+                    frames[i] = new Frame(throws[j], throws[j+1], throws[j+2]),
+                    frames[i-1].scoreThree = throws[j+2], j++, j++,
+                    frames[i-1].total = frames[i-1].scoreOne + frames[i-1].scoreTwo + frames[i-1].scoreThree;
+                    break;
             case isFinalFrameStrike(j, throws[j]):
-                    frames[i] = new Frame(throws[j], throws[j+1], throws[j+2]), j++, j++;
+                    frames[i] = new Frame(throws[j], throws[j+1], throws[j+2]), j++, j++,
+                    frames[i-1].total = frames[i-1].scoreOne + frames[i-1].scoreTwo + frames[i-1].scoreThree;
                     break;
             case isDouble(throws[j],throws[j-2]):
                     frames[i] = new Frame(throws[j], throws[j+2], null),
-                    frames[i-1].score3 = throws[j+2], j++, j++;
+                    frames[i-1].scoreThree = throws[j+2], j++, j++,
+                    frames[i-1].total = frames[i-1].scoreOne + frames[i-1].scoreTwo + frames[i-1].scoreThree;
                     break;
             case isStrike(throws[j]):
                     frames[i] = new Frame(throws[j], throws[j+2], null), j++, j++;
                     break;
+            case isPostStrikeSpare(throws[j], throws[j+1], throws[j-2]):
+                       frames[i] = new Frame(throws[j], throws[j+1], throws[j+2]),
+                       frames[i-1].scoreThree = throws[j+1], j++, j++,
+                       frames[i-1].total = frames[i-1].scoreOne + frames[i-1].scoreTwo + frames[i-1].scoreThree;
+                        break;
             case isSpare(throws[j], throws[j+1]):
                     frames[i] = new Frame(throws[j], throws[j+1], throws[j+2]), j++, j++;
                     break;
+            case isPostStrikeNormal(throws[j], throws[j+1], throws[j-2]):
+                        frames[i] = new Frame(throws[j], throws[j+1], null),
+                        frames[i-1].scoreThree = throws[j+1], j++, j++,
+                        frames[i-1].total = frames[i-1].scoreOne + frames[i-1].scoreTwo + frames[i-1].scoreThree;
+                         break;
             default:
                 frames[i] = new Frame(throws[j], throws[j+1], null), j++, j++;
         }
@@ -189,10 +215,13 @@ function calculateTotal(frames, throws){
     for(var k=0;k<frames.length;k++) {
         total += frames[k].total;
     }
+    for(var l=0;l<frames.length;l++) {
+        framesObjects[l] = (Object.values(frames[l]));
+    }
     return total;
     }
     
-
+    
 
 
 
