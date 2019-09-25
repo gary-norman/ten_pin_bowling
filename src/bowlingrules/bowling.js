@@ -110,28 +110,8 @@ function calculateScore(throws){
 
 */
 /*
-function Frame(throw1, throw2)  {
-    this.throwOne = throw1;
-    this.throwTwo = throw2;
-}
+
 */
-
-/*function finalFrameStrike(x,y,z) {
-     return x + y + z;
-}
-function double(x,y,z)   {
-     return x + y + z;
-}
-function strike(x,y,z)   {
-     return x + y + z;
-}
-function spare(x,y,z)    {
-     return x + y + z;
-} 
-function normal(x,y)    {
-     return x + y;
-}   */
-
 
 /*
 function calculateScore(throws){
@@ -158,6 +138,22 @@ function calculateScore(throws){
     }
     return total;
     */
+
+   /*function Frame(throw1, throw2)  {
+    this.throwOne = throw1;
+    this.throwTwo = throw2;
+}*/
+
+    class Frame {
+        constructor(score1, score2, score3, total) {
+        this.scoreOne = score1;
+        this.scoreTwo = score2;
+        this.scoreThree = score3;
+        this.total = this.scoreOne + this.scoreTwo + this.scoreThree;
+    }}
+
+
+
     function isFinalFrameStrike(x,y)  {
     return x === 18 && y === 10;
     }
@@ -170,39 +166,31 @@ function calculateScore(throws){
     function isSpare(x,y)   {
     return x < 10 && y < 10 && x + y === 10;
     }
-
-   /*
-   function frameScore(x,y,z)  {
-    frames[i] = x + y + z;
-    return frames[i], j++, j++;
-}
-*/
+    function frameScore(x,y,z)  {
+    return x + y + z;
+    }
 function calculateTotal(frames, throws){
     let j=0, total = 0;
     for(var i=0;i<frames.length;i++) {
 
         switch(true)  {
             case isFinalFrameStrike(j, throws[j]):
-                    frames[i] = throws[j] + throws[j+1] + throws[j+2], j++, j++;
-                    //frameScore(throws[j], throws[j+1], throws[j+2]);
+                    //frames[i] = frameScore(throws[j], throws[j+1], throws[j+2]), j++, j++;
+                    frames[i] = new Frame(throws[j], throws[j+1], throws[j+2]), j++, j++;
                     break;
             case isDouble(throws[j],throws[j+2]):
-                    frames[i] = throws[j] + throws[j+2] + throws[j+4], j++, j++;
-                    //frameScore(throws[j], throws[j+2], throws[j+4]);
+                    frames[i] = new Frame(throws[j], throws[j+2], throws[j+4]), j++, j++;
                     break;
             case isStrike(throws[j]):
-                    frames[i] = throws[j] + throws[j+2] + throws[j+3], j++, j++;
+                    frames[i] = new Frame(throws[j], throws[j+2], throws[j+3]), j++, j++;
                     break;
             case isSpare(throws[j], throws[j+1]):
-                    frames[i] = throws[j] + throws[j+1] + throws[j+2], j++, j++;
+                    frames[i] = new Frame(throws[j], throws[j+1], throws[j+2]), j++, j++;
                     break;
             default:
-                frames[i] = throws[j], j++, frames[i] += throws[j], j++;
+                frames[i] = new Frame(throws[j], throws[j+1], null), j++, j++;
         }
-
-        
-    
-        total += frames[i];
+        total += frames[i].total;
     }
     return total;
     }
@@ -213,12 +201,4 @@ function calculateTotal(frames, throws){
 
 //module.exports.calculateScore = calculateScore;
 module.exports.calculateTotal = calculateTotal;
-/*module.exports.finalFrameStrike = finalFrameStrike;
-module.exports.double = double;
-module.exports.strike = strike;
-module.exports.spare = spare;
-module.exports.isFinalFrameStrike = isFinalFrameStrike;
-module.exports.isDouble = isDouble;
-module.exports.isStrike = isStrike;
-module.exports.isSpare = isSpare;
-*/
+
