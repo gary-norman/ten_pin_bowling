@@ -172,6 +172,11 @@ function calculateScore(throws){
     function isSpare(x,y)   {
     return x < 10 && y < 10 && x + y === 10;
     }
+
+    function normal(frames,w,x,y,z)    {
+        frames[w] = new Frame(x, y, z);
+    }
+
 function calculateTotal(frames, framesObjects, throws){
     let j=0, total = 0;
     for(var i=0;i<frames.length;i++) {
@@ -186,6 +191,7 @@ function calculateTotal(frames, framesObjects, throws){
                     frames[i] = new Frame(throws[j], throws[j+1], throws[j+2]), j++, j++,
                     frames[i-1].total = frames[i-1].scoreOne + frames[i-1].scoreTwo + frames[i-1].scoreThree;
                     break;
+            
             case isDouble(throws[j],throws[j-2]):
                     frames[i] = new Frame(throws[j], throws[j+2], null),
                     frames[i-1].scoreThree = throws[j+2], j++, j++,
@@ -208,7 +214,8 @@ function calculateTotal(frames, framesObjects, throws){
                         frames[i-1].total = frames[i-1].scoreOne + frames[i-1].scoreTwo + frames[i-1].scoreThree;
                          break;
             default:
-                frames[i] = new Frame(throws[j], throws[j+1], null), j++, j++;
+                normal(i,throws[j], throws[j+1], null), j++, j++    
+            //frames[i] = new Frame(throws[j], throws[j+1], null), j++, j++;
         }
         //total += frames[i].total;
     }
