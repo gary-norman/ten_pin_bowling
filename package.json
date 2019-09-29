@@ -19,9 +19,9 @@
   },
   "homepage": "https://github.com/samuishark/ten_pin_bowling#readme",
   "devDependencies": {
-    "@babel/core": "^7.6.0",
-    "@babel/node": "^7.6.1",
-    "@babel/preset-env": "^7.5.4",
+    "@babel/core": "^7.6.2",
+    "@babel/node": "^7.6.2",
+    "@babel/preset-env": "^7.6.2",
     "mocha": "^6.2.0",
     "nodemon": "^1.19.2"
   },

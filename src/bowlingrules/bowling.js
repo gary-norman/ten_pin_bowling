@@ -151,30 +151,131 @@ function calculateScore(throws){
         this.scoreThree = score3;
         this.total = this.scoreOne + this.scoreTwo + this.scoreThree;
     }}
+    function isFinalFrameTurkey(w,x,y,z)  {
+        return w === 18 && x === 10 && y === 10 && z === 10;
+    }
     function isFinalFrameStrike(x,y)  {
-    return x === 18 && y === 10;
+        return x === 18 && y === 10;
     }
     function isFinalFrameDouble(x,y,z)  {
         return x === 18 && y === 10 && z === 10;
-        }
+    }
+    function isFinalDoubleSpare(v,w,x,y,z)  {
+        return v === 18 && w === 10 && x === 10 && y < 10 && y + z === 10;
+    }
+    function isFinalStrikeSpare(w,x,y,z)  {
+        return w === 18 && x === 10 && y < 10 && y + z === 10;
+    }
+    function isFinalSpareSpare(v,w,x,y,z)  {
+        return v === 18 && w < 10 && w + x === 10 && y < 10 && y + z === 10;
+    }
+    function isFinalFrameSpare(x,y,z)  {
+        return x === 18 && y < 10 && y + z === 10;
+    }
+    function isTurkey(x,y,z)    {
+        return x === 10 && y === 10 && z === 10;
+    }
     function isDouble(x,y)    {
     return x === 10 && y === 10;    
     }
-    function isStrike(x)    {
-    return x === 10;
+    function isPostSpareStrike(x,y,z)    {
+        return x < 10 && x + y === 10 && z === 10;
+    }
+    function isPostDoubleSpare(w,x,y,z)    {
+        return w === 10 && x === 10 && y < 10 && y + z === 10;
     }
     function isPostStrikeSpare(x,y,z)   {
-    return x < 10 && y < 10 && x + y === 10 && z === 10;
+        return x === 10 && y < 10 && y + z === 10;
+    }
+    function isPostSpareSpare(w,x,y,z) {
+        return w < 10 && w + x === 10 && y < 10 && y + z === 10;
+    }
+    function isPostDoubleNormal(w,x,y,z)   {
+        return w === 10 && x === 10 && y < 10 && y+z <10;
     }
     function isPostStrikeNormal(x,y,z)   {
-        return x < 10 && y < 10 && z === 10;
-        }
-    function isSpare(x,y)   {
-    return x < 10 && y < 10 && x + y === 10;
+        return x === 10 && y < 10 && (y+z) < 10;
     }
+    function isPostSpareNormal(w,x,y,z)    {
+        return w < 10 && w + x === 10 && y < 10 && y + z < 10;
+    }
+    function isStrike(x)    {
+        return x === 10;
+    }
+    /*function isSpare(x,y)   {
+        return x < 10 && y < 10 && x + y === 10;
+    }*/
 
+    function finalTurkey(frames,w,x,y,z)    {
+        frames[w] = new Frame(x,y,z);
+        frames[w-1].scoreThree += x+y;
+        frames[w-2].scoreThree += x;
+        frames[w-1].total = frames[w-1].scoreOne + frames[w-1].scoreThree;
+        frames[w-2].total = frames[w-2].scoreOne + frames[w-2].scoreThree;
+    }
+    function finalDouble(frames,w,x,y,z)  {
+        frames[w] = new Frame (x,y,z);
+        frames[w-1].scoreThree += x+y;
+        frames[w-1].total = frames[w-1].scoreOne + frames[w-1].scoreThree;
+    }
+    function finalStrike(frames,w,x,y,z)  {
+        frames[w] = new Frame (x,y,z);
+    }
+    function finalSpare(frames,w,x,y,z)   {
+        frames[w] = new Frame (x,y,z);
+    }
+    function finalDoubleSpare(frames,w,x,y,z)  {
+        frames[w] = new Frame (x,y,z);
+        frames[w-1].scoreThree += x+y;
+        frames[w-2].scoreThree += x;
+        frames[w-1].total = frames[w-1].scoreOne + frames[w-1].scoreThree;
+        frames[w-2].total = frames[w-2].scoreOne + frames[w-2].scoreThree;
+    }
+    function finalStrikeSpare(frames,w,x,y,z)   {
+        frames[w] = new Frame (x,y,z);
+        frames[w-1].scoreThree = y+z;
+        frames[w-1].total = frames[w-1].scoreOne + frames[w-1].scoreThree;
+    }
+    function finalSpareSpare(frames,w,x,y,z)   {
+        frames[w] = new Frame (x,y,z);
+        frames[w-1].scoreThree = y;
+        frames[w-1].total = frames[w-1].scoreOne + frames[w-1].scoreTwo + frames[w-1].scoreThree;
+    }
+    function calcOne(frames,w,x,y,z)  {
+        frames[w] = new Frame (x,y,z);
+        frames[w-1].scoreThree += x;
+        frames[w-2].scoreThree += x;
+        frames[w-1].total = frames[w-1].scoreOne + frames[w-1].scoreThree;
+        frames[w-2].total = frames[w-2].scoreOne + frames[w-2].scoreThree;
+    }
+    function calcTwo(frames,w,x,y,z)  {
+        frames[w] = new Frame (x,y,z);
+        frames[w-1].scoreThree += x;
+        frames[w-1].total = frames[w-1].scoreOne + frames[w-1].scoreThree;
+    }
+    function calcThree(frames,w,x,y,z)  {
+        frames[w] = new Frame (x,y,z);
+        frames[w-1].scoreThree += y+z;
+        frames[w-2].scoreThree += z;
+        frames[w-1].total = frames[w-1].scoreOne + frames[w-1].scoreThree;
+        frames[w-2].total = frames[w-2].scoreOne + frames[w-2].scoreThree;
+    }
+    function calcFour(frames,w,x,y,z) {
+        frames[w] = new Frame(x,y,z);
+        frames[w-1].scoreThree += x+y;
+        frames[w-1].total = frames[w-1].scoreOne + frames[w-1].scoreThree;
+    }
+    function calcFive(frames,w,x,y,z) {
+        frames[w] = new Frame(x,y,z);
+        frames[w-1].scoreThree += x;
+        frames[w-1].total = frames[w-1].scoreOne + frames[w-1].scoreTwo + frames[w-1].scoreThree;
+
+    }
+    function calcSix(frames,w,x,y,z) {
+        frames[w] = new Frame(x,y,z);
+    }
     function normal(frames,w,x,y,z)    {
-        frames[w] = new Frame(x, y, z);
+        frames[w] = new Frame(x,y,z);
     }
 
 function calculateTotal(frames, framesObjects, throws){
@@ -182,46 +283,66 @@ function calculateTotal(frames, framesObjects, throws){
     for(var i=0;i<frames.length;i++) {
 
         switch(true)  {
-            case isFinalFrameDouble(j, throws[j], throws[j-2]):
-                    frames[i] = new Frame(throws[j], throws[j+1], throws[j+2]),
-                    frames[i-1].scoreThree = throws[j+2], j++, j++,
-                    frames[i-1].total = frames[i-1].scoreOne + frames[i-1].scoreTwo + frames[i-1].scoreThree;
-                    break;
+            case isFinalFrameTurkey(j, throws[j-4], throws[j-2], throws[j]):
+                finalTurkey(frames,i,throws[j],throws[j+1],throws[j+2]);
+                break;
+            case isFinalFrameDouble(j, throws[j-2], throws[j]):
+                finalDouble(frames,i,throws[j],throws[j+1],throws[j+2]);
+                break;
             case isFinalFrameStrike(j, throws[j]):
-                    frames[i] = new Frame(throws[j], throws[j+1], throws[j+2]), j++, j++,
-                    frames[i-1].total = frames[i-1].scoreOne + frames[i-1].scoreTwo + frames[i-1].scoreThree;
-                    break;
-            
-            case isDouble(throws[j],throws[j-2]):
-                    frames[i] = new Frame(throws[j], throws[j+2], null),
-                    frames[i-1].scoreThree = throws[j+2], j++, j++,
-                    frames[i-1].total = frames[i-1].scoreOne + frames[i-1].scoreTwo + frames[i-1].scoreThree;
-                    break;
+                finalStrike(frames,i,throws[j],throws[j+1],throws[j+2]);
+                break;
+            case isFinalDoubleSpare(j, throws[j-4], throws[j-2], throws[j], throws[j+1]):
+                finalDoubleSpare(frames,i,throws[j],throws[j+1],throws[j+2]);
+                break;
+            case isFinalStrikeSpare(j, throws[j-2], throws[j], throws[j+1]):
+                finalStrikeSpare(frames,i,throws[j],throws[j+1],throws[j+2]);
+                break;
+            case isFinalSpareSpare(j, throws[j-2], throws[j-1], throws[j], throws[j+1]):
+                finalSpareSpare(frames,i,throws[j],throws[j+1],throws[j+2]);
+                break;   
+            case isFinalFrameSpare(j, throws[j], throws[j+1]):
+                finalSpare(frames,i,throws[j],throws[j+1],throws[j+2]);
+                 break;  
+            case isTurkey(throws[j-4],throws[j-2],throws[j]):
+                calcOne(frames, i, throws[j], 0, 0), j++, j++;
+                break;
+            case isDouble(throws[j-2],throws[j]):
+                calcTwo(frames, i, throws[j], 0, 0), j++, j++;
+                break;
+            case isPostSpareStrike(throws[j-2], throws[j-1],throws[j]):
+                calcTwo(frames, i, throws[j], 0, 0), j++, j++;
+                break;
+            case isPostDoubleSpare(throws[j-4], throws[j-2], throws[j],throws[j+1]):
+                calcThree(frames,i,throws[j],throws[j+1], 0), j++, j++;
+                break;
+            case isPostStrikeSpare(throws[j-2], throws[j], throws[j+1]):
+                calcFour(frames,i,throws[j],throws[j+1], 0), j++, j++;
+                break;
+            case isPostSpareSpare(throws[j-2],throws[j-1],throws[j],throws[j+1]):
+                calcFive(frames,i,throws[j],throws[j+1], 0), j++, j++;
+                break;
+            case isPostDoubleNormal(throws[j-2],throws[j-1],throws[j],throws[j+1]):
+                calcThree(frames,i,throws[j],throws[j+1], 0), j++, j++;
+                break;
+            case isPostStrikeNormal(throws[j-2], throws[j], throws[j+1]):
+                calcFour(frames,i,throws[j],throws[j+1], 0), j++, j++;
+                break;
+            case isPostSpareNormal(throws[j-2],throws[j-1],throws[j],throws[j+1]):
+                calcFive(frames, i, throws[j], throws[j+1], 0), j++, j++;
+                break;
             case isStrike(throws[j]):
-                    frames[i] = new Frame(throws[j], throws[j+2], null), j++, j++;
-                    break;
-            case isPostStrikeSpare(throws[j], throws[j+1], throws[j-2]):
-                       frames[i] = new Frame(throws[j], throws[j+1], throws[j+2]),
-                       frames[i-1].scoreThree = throws[j+1], j++, j++,
-                       frames[i-1].total = frames[i-1].scoreOne + frames[i-1].scoreTwo + frames[i-1].scoreThree;
-                        break;
-            case isSpare(throws[j], throws[j+1]):
-                    frames[i] = new Frame(throws[j], throws[j+1], throws[j+2]), j++, j++;
-                    break;
-            case isPostStrikeNormal(throws[j], throws[j+1], throws[j-2]):
-                        frames[i] = new Frame(throws[j], throws[j+1], null),
-                        frames[i-1].scoreThree = throws[j+1], j++, j++,
-                        frames[i-1].total = frames[i-1].scoreOne + frames[i-1].scoreTwo + frames[i-1].scoreThree;
-                         break;
+                calcSix(frames,i,throws[j], 0, 0), j++, j++;
+                break;
             default:
-                normal(i,throws[j], throws[j+1], null), j++, j++    
-            //frames[i] = new Frame(throws[j], throws[j+1], null), j++, j++;
+                normal(frames, i, throws[j], throws[j+1], 0), j++, j++
         }
-        //total += frames[i].total;
+        
     }
     for(var k=0;k<frames.length;k++) {
         total += frames[k].total;
     }
+    //enumerates objects for debugging
     for(var l=0;l<frames.length;l++) {
         framesObjects[l] = (Object.values(frames[l]));
     }
